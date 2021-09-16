@@ -24,7 +24,7 @@ length(xpathSApply(html0, xpath, xmlValue))
 
 #co_view <- data.frame(co_view)
 
-
+remDr$
 
 remDr <- remoteDriver(remoteServerAddr = "localhost" ,
                       port = 4445, browserName = "chrome")
