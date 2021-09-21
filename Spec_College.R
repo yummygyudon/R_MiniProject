@@ -122,7 +122,7 @@ Spec_c$prize<- gsub("[-]|[회]","",Spec_c$prize)
 Spec_c$prize <- as.numeric(Spec_c$prize)
 c_prize <- Spec_c$prize[!is.na(Spec_c$prize)]
 sum(is.na(Spec_c$prize))# 수상경력 없는 경우
-table(c_cert.ea_mean) # 있는 경우 분포
+table(c_prize) # 있는 경우 분포
 
 c_prize.mean <- round(mean(c_prize),1) # 고졸 수상 횟수 평균
 c_prize.max <- max(c_prize) # 최다 수상
@@ -135,7 +135,7 @@ Spec_c$CSS<- gsub("[-]|[회]","",Spec_c$CSS)
 Spec_c$CSS <- as.numeric(Spec_c$CSS)
 c_CSS <- Spec_c$CSS[!is.na(Spec_c$CSS)]
 sum(is.na(Spec_c$CSS))# 교내활동 경험 없는 경우
-table(c_cert.ea_mean) # 있는 경우 분포
+table(c_CSS) # 있는 경우 분포
 
 c_CSS.mean <- round(mean(c_CSS),1) # 고졸 교내활동 횟수수평균
 c_CSS.max <- max(c_CSS) # 최다 활동

@@ -18,128 +18,128 @@ opic_lv <- c('NL', 'NM', 'NH', 'IL', 'IM1', 'IM2', 'IM3', 'IH', 'AL')
 
 ## 대학원
 Spec_g <- Spec %>% filter(school == "대학원졸")
-nrow(Spec_h)# 고졸 채용 회사 수
+nrow(Spec_g)# 고졸 채용 회사 수
 
 
 
 #학점
-score <- strsplit(Spec_c$score, "/")
+score <- strsplit(Spec_g$score, "/")
 score <- unlist(score)
 score <- gsub("4.5","",score)
 score <- as.double(score)
 score <- score[!is.na(score)] #; length(score)
 
-c_score.mean <- round(mean(score),2)
-c_score.max <- max(score) 
-c_score.min <- min(score)
+g_score.mean <- round(mean(score),2)
+g_score.max <- max(score) 
+g_score.min <- min(score)
 
 
 
 #토익
-Spec_c$TOEIC <- gsub("[-]|[점]","",Spec_c$TOEIC)
-Spec_c$TOEIC <- as.numeric(Spec_c$TOEIC)
-c_TOEIC <- Spec_c$TOEIC[!is.na(Spec_c$TOEIC)]# 토익 있는 경우
-sum(is.na(Spec_c$TOEIC))# 토익 없는 경우
-table(c_TOEIC) # 있는 경우 분포
+Spec_g$TOEIC <- gsub("[-]|[점]","",Spec_g$TOEIC)
+Spec_g$TOEIC <- as.numeric(Spec_g$TOEIC)
+g_TOEIC <- Spec_g$TOEIC[!is.na(Spec_g$TOEIC)]# 토익 있는 경우
+sum(is.na(Spec_g$TOEIC))# 토익 없는 경우
+table(g_TOEIC) # 있는 경우 분포
 
-c_TOEIC.mean <- round(mean(c_TOEIC[!is.na(c_TOEIC)]),0) # 고졸 토익 평균
-c_TOEIC.max <- max(c_TOEIC) # 최고점 
-c_TOEIC.min <- min(c_TOEIC) # 최저점
+g_TOEIC.mean <- round(mean(g_TOEIC[!is.na(g_TOEIC)]),0) # 고졸 토익 평균
+g_TOEIC.max <- max(g_TOEIC) # 최고점 
+g_TOEIC.min <- min(g_TOEIC) # 최저점
 
 
 
 #토스
-Spec_c$T.Speaking <- gsub("[-]","",Spec_c$T.Speaking)
-c_T.Speaking <- factor(Spec_c$T.Speaking, levels = tos_lv)
-length(c_T.Speaking)
-sum(is.na(c_T.Speaking))# 토스 없는 경우
-table(c_T.Speaking) # 있는 경우 분포
+Spec_g$T.Speaking <- gsub("[-]","",Spec_g$T.Speaking)
+g_T.Speaking <- factor(Spec_g$T.Speaking, levels = tos_lv)
+length(g_T.Speaking)
+sum(is.na(g_T.Speaking))# 토스 없는 경우
+table(g_T.Speaking) # 있는 경우 분포
 
 
 
 #오픽
-Spec_c$OPIC <- gsub("[-]","",Spec_c$OPIC)
-c_OPIC <- factor(Spec_c$OPIC, levels = opic_lv)
-length(c_OPIC) # 총 경우
-sum(is.na(c_OPIC))# 오픽 없는 경우
-table(c_OPIC) # 있는 경우 분포
+Spec_g$OPIC <- gsub("[-]","",Spec_g$OPIC)
+g_OPIC <- factor(Spec_g$OPIC, levels = opic_lv)
+length(g_OPIC) # 총 경우
+sum(is.na(g_OPIC))# 오픽 없는 경우
+table(g_OPIC) # 있는 경우 분포
 
 
 
 #외국어
-Spec_c$language <- gsub("[-]|[개]","",Spec_c$language)
-Spec_c$language <- as.numeric(Spec_c$language)
-c_language <- Spec_c$language[!is.na(Spec_c$language)]
-sum(is.na(Spec_c$language))# 외국어 못하는 경우
-table(c_language) # 할 수 있는 경우 분포
+Spec_g$language <- gsub("[-]|[개]","",Spec_g$language)
+Spec_g$language <- as.numeric(Spec_g$language)
+g_language <- Spec_g$language[!is.na(Spec_g$language)]
+sum(is.na(Spec_g$language))# 외국어 못하는 경우
+table(g_language) # 할 수 있는 경우 분포
 #table() 값을 변수에 대입 후, max값의 lv값 추출
 
-c_language.mean <- round(mean(c_language),1) # 고졸 가능 외국어 평균 갯수
-c_language.max <- max(c_language) # 최다 가능 외국어
+g_language.mean <- round(mean(g_language),1) # 고졸 가능 외국어 평균 갯수
+g_language.max <- max(g_language) # 최다 가능 외국어
 
 
 
 #자격증 갯수
-Spec_c$cert.ea_mean<- gsub("[-]|[개]","",Spec_c$cert.ea_mean)
-Spec_c$cert.ea_mean <- as.numeric(Spec_c$cert.ea_mean)
-c_cert.ea_mean <- Spec_c$cert.ea_mean[!is.na(Spec_c$cert.ea_mean)]
-sum(is.na(Spec_c$cert.ea_mean))# 자격증 없는 경우
-table(c_cert.ea_mean) # 있는 경우 분포
+Spec_g$cert.ea_mean<- gsub("[-]|[개]","",Spec_g$cert.ea_mean)
+Spec_g$cert.ea_mean <- as.numeric(Spec_g$cert.ea_mean)
+g_cert.ea_mean <- Spec_g$cert.ea_mean[!is.na(Spec_g$cert.ea_mean)]
+sum(is.na(Spec_g$cert.ea_mean))# 자격증 없는 경우
+table(g_cert.ea_mean) # 있는 경우 분포
 
-c_cert.ea_mean.mean <- round(mean(c_cert.ea_mean),1) # 고졸 자격증 개수평균
-c_cert.ea_mean.max <- max(c_cert.ea_mean) # 최고 개수
-c_cert.ea_mean.min <- min(c_cert.ea_mean) # 최저 개수
+g_cert.ea_mean.mean <- round(mean(g_cert.ea_mean),1) # 고졸 자격증 개수평균
+g_cert.ea_mean.max <- max(g_cert.ea_mean) # 최고 개수
+g_cert.ea_mean.min <- min(g_cert.ea_mean) # 최저 개수
 
 
 
 #해외 경험
-Spec_c$overseas_exp<- gsub("[-]|[회]","",Spec_c$overseas_exp)
-Spec_c$overseas_exp <- as.numeric(Spec_c$overseas_exp)
-c_overseas_exp <- Spec_c$overseas_exp[!is.na(Spec_c$overseas_exp)]
-sum(is.na(Spec_c$overseas_exp))# 해외경험 없는 경우
-table(c_overseas_exp) # 있는 경우 분포
+Spec_g$overseas_exp<- gsub("[-]|[회]","",Spec_g$overseas_exp)
+Spec_g$overseas_exp <- as.numeric(Spec_g$overseas_exp)
+g_overseas_exp <- Spec_g$overseas_exp[!is.na(Spec_g$overseas_exp)]
+sum(is.na(Spec_g$overseas_exp))# 해외경험 없는 경우
+table(g_overseas_exp) # 있는 경우 분포
 
-c_overseas_exp.mean <- round(mean(c_overseas_exp),1) # 고졸 해외경험 평균 (유경험자 한해서)
-c_overseas_exp.max <- max(c_overseas_exp) # 최다 경험
-c_overseas_exp.min <- min(c_overseas_exp) # 최소 경험
+g_overseas_exp.mean <- round(mean(g_overseas_exp),1) # 고졸 해외경험 평균 (유경험자 한해서)
+g_overseas_exp.max <- max(g_overseas_exp) # 최다 경험
+g_overseas_exp.min <- min(g_overseas_exp) # 최소 경험
 
 
 
 #인턴 경험
-Spec_c$intern<- gsub("[-]|[회]","",Spec_c$intern)
-Spec_c$intern <- as.numeric(Spec_c$intern)
-c_intern <- Spec_c$intern[!is.na(Spec_c$intern)]
-sum(is.na(Spec_c$intern))# 인턴경험 없는 경우
-table(c_intern) # 있는 경우 분포
+Spec_g$intern<- gsub("[-]|[회]","",Spec_g$intern)
+Spec_g$intern <- as.numeric(Spec_g$intern)
+g_intern <- Spec_g$intern[!is.na(Spec_g$intern)]
+sum(is.na(Spec_g$intern))# 인턴경험 없는 경우
+table(g_intern) # 있는 경우 분포
 
-c_intern.mean <- round(mean(c_intern),1) # 고졸 평균 인턴 횟수
-c_intern.max <- max(c_intern) # 최다 횟수
+g_intern.mean <- round(mean(g_intern),1) # 고졸 평균 인턴 횟수
+g_intern.max <- max(g_intern) # 최다 횟수
 
 
 
 #수상
-Spec_c$prize<- gsub("[-]|[회]","",Spec_c$prize)
-Spec_c$prize <- as.numeric(Spec_c$prize)
-c_prize <- Spec_c$prize[!is.na(Spec_c$prize)]
-sum(is.na(Spec_c$prize))# 수상경력 없는 경우
-table(c_cert.ea_mean) # 있는 경우 분포
+Spec_g$prize<- gsub("[-]|[회]","",Spec_g$prize)
+Spec_g$prize <- as.numeric(Spec_g$prize)
+g_prize <- Spec_g$prize[!is.na(Spec_g$prize)]
+sum(is.na(Spec_g$prize))# 수상경력 없는 경우
+table(g_prize) # 있는 경우 분포
 
-c_prize.mean <- round(mean(c_prize),1) # 고졸 수상 횟수 평균
-c_prize.max <- max(c_prize) # 최다 수상
-c_prize.min <- min(c_prize) # 최저 수상
+g_prize.mean <- round(mean(g_prize),1) # 고졸 수상 횟수 평균
+g_prize.max <- max(g_prize) # 최다 수상
+g_prize.min <- min(g_prize) # 최저 수상
 
 
 
 #교내활동
-Spec_c$CSS<- gsub("[-]|[회]","",Spec_c$CSS)
-Spec_c$CSS <- as.numeric(Spec_c$CSS)
-c_CSS <- Spec_c$CSS[!is.na(Spec_c$CSS)]
-sum(is.na(Spec_c$CSS))# 교내활동 경험 없는 경우
-table(c_cert.ea_mean) # 있는 경우 분포
+Spec_g$CSS<- gsub("[-]|[회]","",Spec_g$CSS)
+Spec_g$CSS <- as.numeric(Spec_g$CSS)
+g_CSS <- Spec_g$CSS[!is.na(Spec_g$CSS)]
+sum(is.na(Spec_g$CSS))# 교내활동 경험 없는 경우
+table(g_CSS) # 있는 경우 분포
 
-c_CSS.mean <- round(mean(c_CSS),1) # 고졸 교내활동 횟수수평균
-c_CSS.max <- max(c_CSS) # 최다 활동
-c_CSS.min <- min(c_CSS) # 최소 활동
+g_CSS.mean <- round(mean(g_CSS),1) # 고졸 교내활동 횟수수평균
+g_CSS.max <- max(g_CSS) # 최다 활동
+g_CSS.min <- min(g_CSS) # 최소 활동
 
 
 
