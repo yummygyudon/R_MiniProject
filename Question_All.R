@@ -111,12 +111,46 @@ windowsFonts(theleft=windowsFont("THE왼손잡이"))
 wordcloud2(question_word,col="random-light",backgroundColor = "black",fontFamily = "theleft")
 wordcloud2(question_word2,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
            size=1)
+result_allquestion <- wordcloud2(question_word,col="random-light",backgroundColor = "white",fontFamily = "theleft")
+library(htmlwidgets)
+htmltools::save_html(result_allquestion,"output/allquestion.html")
 
+######
+library(qgraph)
+
+qgraph(question_word, labels=rownames(question_word), diag=F, 
+       layout='spring',  edge.color='blue', 
+       vsize=log(diag(IT_word)*800))
+
+all_Q_n <- head(question_word,30)
+co.matrix <- all_Q_n %*% t(all_Q_n)
+
+png(filename="output/all_Q_qgraph.png",unit="px",bg="transparent")
+
+qgraph(co.matrix,
+       
+       labels=rownames(co.matrix),   ##label 추가
+       
+       diag=F,                       ## 자신의 관계는 제거함
+       
+       layout='spring',              ##노드들의 위치를 spring으로 연결된 것 처럼 관련이 강하면 같이 붙어 있고 없으면 멀리 떨어지도록 표시됨
+       
+       edge.color='purple',
+       
+       vsize=log(diag(co.matrix))*0.7)
+
+dev.off()
+########
 # 그래프 --> 수정
-barplot(head(question_word2))
-                     
-barplot(head(question_word2), main="면접 질문 최다 단어", xlab="단어", 
-          ylab="횟수", border="red", col="green", density=coldens, 
-          names.arg=xname, family="theleft")
+library(RColorBrewer)
+coul <- brewer.pal(10, "Set3") 
+par(mar=c(5,8,4,2))
+font_add(family = "slim", regular = "fonts/OdSlimfitGothicL.ttf")
+top_q <- head(question_word,20)
+barplot(top_q, xlim = c(0,1200),
+        horiz=T, las=1, cex.names=1.5,family="slim", border="white",
+        col=coul, xlab="Frequency")
 
-
+title(main="최다 단어 TOP 20",family="slim",cex.main=2,col.main="orange")
+dev.copy(png,"output/all_Q_barplot.png")
+dev.off()

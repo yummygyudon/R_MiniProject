@@ -120,7 +120,8 @@ write(com_naver, file ="com_top10/naver.txt")
 library(dplyr)
 library(KoNLP)
 library(wordcloud2)
-
+library(htmlwidgets)
+bg <- rgb(234,242,255,max = 255)
 #samsung 
 word_samsung <- readLines('com_top10/samsung.txt')
 word_samsung <- extractNoun(word_samsung)
@@ -135,8 +136,10 @@ word_samsung <- subset(word_samsung, names(word_samsung) !="무엇" &names(word_
                        &names(word_samsung) !="분양가"&names(word_samsung) !="찬반토론해보"&names(word_samsung) !='직접해본적이'&names(word_samsung) !="용해"&names(word_samsung) !="하기"&names(word_samsung) !="한국의"&names(word_samsung) !="최종"&names(word_samsung) !="진중"
                        &names(word_samsung) !="한국"&names(word_samsung) !="우리"&names(word_samsung) !="위주"&names(word_samsung) !="이전"&names(word_samsung) !="수일"&names(word_samsung) !="어떤식으로"&names(word_samsung) !="비결"&names(word_samsung) !="비교"&names(word_samsung) !="비극")
 word_samsung <- subset(word_samsung, word_samsung >2)
-wordcloud2(word_samsung,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+samsung <- wordcloud2(word_samsung,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1)
+htmltools::save_html(samsung,"output/Q_samsung.html")
+head_samsung <- head(word_samsung,10)
 
 # LG
 word_lg <- readLines('com_top10/lg.txt')
@@ -154,8 +157,10 @@ word_lg <- subset(word_lg, names(word_lg) !="무엇"& names(word_lg) !="설명"&
                   & names(word_lg) !="엮어서"& names(word_lg) !="여자"& names(word_lg) !="열전"& names(word_lg) !="얼마"& names(word_lg) !="시력"
                   & names(word_lg) !="밀폐"& names(word_lg) !="뭔가"& names(word_lg) !="몰입"& names(word_lg) !="물건"& names(word_lg) !="로프"& names(word_lg) !="말해보"& names(word_lg) !="등정")
 word_lg <- subset(word_lg, word_lg >1)
-wordcloud2(word_lg,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+lg <- wordcloud2(word_lg,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1)
+htmltools::save_html(lg,"output/Q_lg.html")
+head_lg <- head(word_lg,10)
 
 # KT
 word_kt <- readLines('com_top10/kt.txt')
@@ -167,8 +172,11 @@ word_kt <- sort(table(word_kt),decreasing = T)
 
 word_kt <- subset(word_kt, names(word_kt) !="생각" &names(word_kt) !="무엇" &names(word_kt) !="본인"& names(word_kt) !="회사")
 word_kt <- subset(word_kt, word_kt >1)
-wordcloud2(word_kt,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+kt <- wordcloud2(word_kt,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1)
+htmltools::save_html(kt,"output/Q_kt.html")
+head_samsung <- head(word_samsung,10)
+
 
 # bank 
 word_bank <- readLines('com_top10/bank.txt')
@@ -183,8 +191,10 @@ word_bank <- subset(word_bank, names(word_bank) !="설명" &names(word_bank) !="
                     & names(word_bank) !="그림"& names(word_bank) !="IBK"& names(word_bank) !="마지막"& names(word_bank) !="비롯"& names(word_bank) !="결심"
                     & names(word_bank) !="기업"& names(word_bank) !="은행"& names(word_bank) !="많은"& names(word_bank) !="동안"& names(word_bank) !="무작위"& names(word_bank) !="하시"& names(word_bank) !="하기")
 word_bank <- subset(word_bank, word_bank >1)
-wordcloud2(word_bank,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+bank <- wordcloud2(word_bank,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1)
+htmltools::save_html(bank,"output/Q_bank.html")
+head_samsung <- head(word_samsung,10)
 
 # samsungSDI --> 질문 부족 
 word_samsungSDI <- readLines('com_top10/samsungSDI.txt')
@@ -218,8 +228,11 @@ word_hyundai %>%  filter(nchar(word_hyundai)>=2) -> word_hyundai
 word_hyundai <- sort(table(word_hyundai),decreasing = T)
 
 word_hyundai <- subset(word_hyundai, names(word_hyundai) !="무엇" & names(word_hyundai)!="생각" & names(word_hyundai)!="본인")
-wordcloud2(word_hyundai,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+hyundai <- wordcloud2(word_hyundai,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1) 
+htmltools::save_html(hyundai,"output/Q_hyundai.html")
+head_samsung <- head(word_samsung,10)
+
 
 # kakao  --> 애매
 word_kakao <- readLines('com_top10/kakao.txt')
@@ -230,8 +243,10 @@ word_kakao %>%  filter(nchar(word_kakao)>=2) -> word_kakao
 word_kakao <- sort(table(word_kakao),decreasing = T)
 
 word_kakao <- subset(word_kakao, names(word_kakao) !="무엇" & names(word_kakao)!="생각" & names(word_kakao)!="본인"& names(word_kakao)!="관련")
-wordcloud2(word_kakao,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+kakao <- wordcloud2(word_kakao,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1) 
+htmltools::save_html(kakao,"output/Q_kakao.html")
+head_samsung <- head(word_samsung,10)
 
 # lotteH
 word_lotteH <- readLines('com_top10/lotteH.txt')
@@ -242,8 +257,11 @@ word_lotteH %>%  filter(nchar(word_lotteH)>=2) -> word_lotteH
 word_lotteH <- sort(table(word_lotteH),decreasing = T)
 
 word_lotteH <- subset(word_lotteH, names(word_lotteH) !="무엇" & names(word_lotteH)!="생각" & names(word_lotteH)!="본인"& names(word_lotteH)!="관련")
-wordcloud2(word_lotteH,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+lotteH <- wordcloud2(word_lotteH,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1) 
+htmltools::save_html(lotteH,"output/Q_lotteH.html")
+head_samsung <- head(word_samsung,10)
+
 
 # netmable
 word_netmable <- readLines('com_top10/netmable.txt')
@@ -254,8 +272,11 @@ word_netmable %>%  filter(nchar(word_netmable)>=2) -> word_netmable
 word_netmable <- sort(table(word_netmable),decreasing = T)
 
 word_netmable <- subset(word_netmable, names(word_netmable) !="무엇" & names(word_netmable)!="생각" & names(word_netmable)!="본인"& names(word_netmable)!="관련"& names(word_netmable)!="하시")
-wordcloud2(word_netmable,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+netmable <- wordcloud2(word_netmable,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1) 
+htmltools::save_html(netmable,"output/Q_netmable.html")
+head_samsung <- head(word_samsung,10)
+
 # nc
 word_nc <- readLines('com_top10/nc.txt')
 word_nc <- extractNoun(word_nc)
@@ -266,8 +287,10 @@ word_nc <- sort(table(word_nc),decreasing = T)
 
 word_nc <- subset(word_nc, word_nc >1)
 word_nc <- subset(word_nc, names(word_nc) !="무엇" & names(word_nc)!="생각" & names(word_nc)!="본인"& names(word_nc)!="관련"& names(word_nc)!="하시"& names(word_nc)!= "설명")
-wordcloud2(word_nc,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
-           size=1) 
+nc <- wordcloud2(word_nc,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
+           size=1)
+htmltools::save_html(nc,"output/Q_nc.html")
+head_samsung <- head(word_samsung,10)
 
 # hansam
 word_hansam <- readLines('com_top10/hansam.txt')
@@ -279,8 +302,10 @@ word_hansam <- sort(table(word_hansam),decreasing = T)
 
 word_hansam <- subset(word_hansam, word_nc >2)
 word_hansam <- subset(word_hansam, names(word_hansam) !="무엇" & names(word_hansam)!="생각" & names(word_hansam)!="본인"& names(word_hansam)!="관련"& names(word_hansam)!="하시")
-wordcloud2(word_hansam,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+hansam <- wordcloud2(word_hansam,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1) 
+htmltools::save_html(hansam,"output/Q_hansam.html")
+head_samsung <- head(word_samsung,10)
 
 # sebang --> 애매
 word_sebang <- readLines('com_top10/sebang.txt')
@@ -291,7 +316,7 @@ word_sebang %>%  filter(nchar(word_sebang)>=2) -> word_sebang
 word_sebang <- sort(table(word_sebang),decreasing = T)
 
 word_sebang <- subset(word_sebang, names(word_sebang) !="무엇" & names(word_sebang)!="생각" & names(word_sebang)!="본인"& names(word_sebang)!="관련"& names(word_sebang)!="하시")
-wordcloud2(word_sebang,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+wordcloud2(word_sebang,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1) 
 
 # lgCNS
@@ -303,9 +328,10 @@ word_lgCNS %>%  filter(nchar(word_lgCNS)>=2) -> word_lgCNS
 word_lgCNS <- sort(table(word_lgCNS),decreasing = T)
 
 word_lgCNS <- subset(word_lgCNS, names(word_lgCNS) !="무엇" & names(word_lgCNS)!="생각" & names(word_lgCNS)!="본인"& names(word_lgCNS)!="관련"& names(word_lgCNS)!="하시")
-wordcloud2(word_lgCNS,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+lgcns <- wordcloud2(word_lgCNS,col="random-light",backgroundColor = bg,fontFamily = "theleft",shape = 'pentagon',
            size=1) 
-
+htmltools::save_html(lgcns,"output/Q_lgcns.html")
+head_samsung <- head(word_samsung,10)
 
 # naver
 word_naver <- readLines('com_top10/naver.txt')
@@ -317,5 +343,10 @@ word_naver <- sort(table(word_naver),decreasing = T)
 
 word_naver <- subset(word_naver, word_naver >1)
 word_naver <- subset(word_naver, names(word_naver) !="하세" &names(word_naver) !="한가" &names(word_naver) !="해주" &names(word_naver) !="무엇" & names(word_naver)!="생각" & names(word_naver)!="본인"& names(word_naver)!="관련"& names(word_naver)!="하시")
-wordcloud2(word_naver,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
+naver <- wordcloud2(word_naver,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
            size=1) 
+htmltools::save_html(naver,"output/Q_naver.html")
+head_samsung <- head(word_samsung,10)
+
+
+allcompany <- data.frame()
