@@ -141,6 +141,7 @@ g_CSS.mean <- round(mean(g_CSS),1) # 고졸 교내활동 횟수수평균
 g_CSS.max <- max(g_CSS) # 최다 활동
 g_CSS.min <- min(g_CSS) # 최소 활동
 
+save.image(file = "C:/R_Mini/Graduate_var.RData")
 
 
 getwd()
