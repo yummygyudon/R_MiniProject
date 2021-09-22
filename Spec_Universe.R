@@ -143,6 +143,11 @@ u_CSS.min <- min(u_CSS) # 최소 활동
 
 
 
+getwd()
+setwd("C:/R_Mini")
+library(showtext)
+showtext_auto() 
+font_add(family = "godic", regular = "font/210 옴니고딕 030.ttf")
 # 학력별 각 요소 최다 빈도 수 값을 통해 500개 IT 기업들의 합격자 학력별 평균 스펙 도출
-
+library(ggplot2)
 library(fmsb) 
