@@ -141,8 +141,14 @@ c_CSS.mean <- round(mean(c_CSS),1) # 고졸 교내활동 횟수수평균
 c_CSS.max <- max(c_CSS) # 최다 활동
 c_CSS.min <- min(c_CSS) # 최소 활동
 
+save.image(file = "C:/R_Mini/College_var.RData")
 
 
+getwd()
+setwd("C:/R_Mini")
+library(showtext)
+showtext_auto() 
+font_add(family = "godic", regular = "font/210 옴니고딕 030.ttf")
 # 학력별 각 요소 최다 빈도 수 값을 통해 500개 IT 기업들의 합격자 학력별 평균 스펙 도출
-
+library(ggplot2)
 library(fmsb) 
