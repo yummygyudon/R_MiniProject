@@ -107,7 +107,7 @@ library(showtext)
 showtext_auto() 
 font_add(family = "cat", regular = "fonts/HoonWhitecatR.ttf")
 windowsFonts(theleft=windowsFont("THE왼손잡이"))
-
+library(wordcloud2)
 wordcloud2(question_word,col="random-light",backgroundColor = "black",fontFamily = "theleft")
 wordcloud2(question_word2,col="random-light",backgroundColor = "black",fontFamily = "theleft",shape = 'pentagon',
            size=1)
@@ -144,12 +144,12 @@ dev.off()
 # 그래프 --> 수정
 library(RColorBrewer)
 coul <- brewer.pal(10, "Set3") 
-par(mar=c(5,8,4,2))
+par(mar=c(5,9,5,2))
 font_add(family = "slim", regular = "fonts/OdSlimfitGothicL.ttf")
-top_q <- head(question_word,20)
+top_q <- head(question_word,15)
 barplot(top_q, xlim = c(0,1200),
         horiz=T, las=1, cex.names=1.5,family="slim", border="white",
-        col=coul, xlab="Frequency")
+        col=coul)
 
 title(main="최다 단어 TOP 20",family="slim",cex.main=2,col.main="orange")
 dev.copy(png,"output/all_Q_barplot.png")
